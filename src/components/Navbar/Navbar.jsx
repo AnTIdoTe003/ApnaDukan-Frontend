@@ -21,11 +21,13 @@ import { useAuth } from "../../context/auth";
 import axios from "axios";
 import SearchProducts from "../SearchProducts/SearchProducts";
 import { useSelector } from "react-redux";
+import { useCart } from "../../context/cart";
 
 const Navbar = () => {
   const [searchKey, setSearchKey] = useState("");
   const [searchData, setSearchData] = useState([]);
   const [auth, setAuth] = useAuth();
+  const [cart] = useCart()
   const cartItems = useSelector((state)=>{
     return state.cart.items
   })
@@ -152,7 +154,7 @@ const Navbar = () => {
                 }}
               ></FaShoppingCart>
               </Link>
-              <p>{cartItems.length}</p>
+              <p>{cart.length}</p>
             </div>
           </div>
           <div className="nav-content-mob">
