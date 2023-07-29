@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Container, Text } from "@chakra-ui/react";
+import {Box, Button, Container, HStack, Text, VStack} from "@chakra-ui/react";
 import { useAuth } from "../../context/auth";
 import { useCart } from "../../context/cart";
 import axios from "axios";
@@ -11,20 +11,46 @@ const Cart = () => {
   return auth.token ? (
     <Box w={"full"}>
       <Container w={"full"} maxWidth={"1440px"} margin={"0 auto"}>
-        <Box w={"full"} display={"flex"}>
+        <Box w={"full"} display={"flex"} gap={'2rem'}>
           {/* Cart Items */}
-          <Box>
+          <Box display={'flex'} p={'10px'} flexDirection={'column'} alignItems={'center'} w={'70%'} bg={'rgba(185,187,196,0.42)'} borderRadius={'6px'}>
             <Box>
-              <Text>Your Cart Items are</Text>
+              <Text fontSize={'2xl'} fontWeight={'600'} >Your Cart Items are</Text>
             </Box>
-            <Box>
+            <Box w={'full'}>
               {cart.map((ele) => {
                 return(
                   <Box>
-                    <CartItem id={ele.productId}/>
+                    <CartItem qty={ele.quantity} id={ele.productId}/>
                     </Box>
                 )
               })}
+            </Box>
+          </Box>
+        {/*  Subtotal Price*/}
+          <Box w={'30%'} bg={'rgba(185,187,196,0.42)'} borderRadius={'6px'} display={'flex'} p={'10px'} flexDirection={'column'} alignItems={'center'} gap={'2rem'}>
+            <Box>
+              <Text fontSize={'2xl'} fontWeight={'600'}  pb={'20px'}>Your Total Price is</Text>
+            </Box>
+            <Box w={'full'}>
+              <VStack w={'full'} borderBottom={'1px dashed #bbb'}>
+                <HStack justifyContent={'space-between'} w={'full'}>
+                  <Text fontWeight={'600'} fontSize={'14px'}>Total Price:-</Text>
+                  <Text fontWeight={'600'} fontSize={'14px'}>Rs {auth.totalPrice}</Text>
+                </HStack>
+                <HStack justifyContent={'space-between'} w={'full'}>
+                  <Text fontWeight={'600'} fontSize={'14px'}>Delivery Fee</Text>
+                  <Text fontWeight={'600'} fontSize={'14px'} as={'del'} color={'red'}>Rs 99</Text>
+                </HStack>
+                <Text fontWeight={'600'} fontSize={'14px'} w={'full'} textAlign={'right'} color={'green'}>Free</Text>
+              </VStack>
+              <HStack py={'10px'} justifyContent={'space-between'} w={'full'}>
+                <Text fontWeight={'600'} fontSize={'14px'}>Total Amount <span>(including GST)</span></Text>
+                <Text fontWeight={'600'} fontSize={'14px'}>Rs {auth.totalPrice}</Text>
+              </HStack>
+            </Box>
+            <Box>
+              <Button bg={'#EE1C47'} w={'300px'} h={'50px'} color={'white'} _hover={'none'}>Go to Checkout</Button>
             </Box>
           </Box>
         </Box>

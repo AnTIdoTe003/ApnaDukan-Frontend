@@ -18,6 +18,7 @@ import {useAuth} from "./context/auth";
 import AllProducts from './pages/Admin/AllProducts';
 import ProductPage from './pages/Product/ProductPage';
 import Cart from './pages/Cart/Cart';
+import Checkout from "./pages/Checkout/Checkout";
 
 // axios defaults
 
@@ -44,6 +45,7 @@ const App = () => {
         {/* Private Route */}
         <Route path="/dashboard" element={<PrivateRoute></PrivateRoute>}>
           <Route path="user" element={<Dashboard></Dashboard>} />
+          <Route path ="checkout" element={<Checkout></Checkout>}/>
         </Route>
         {/* Admin Route Protected */}
         <Route path="/dashboard" element={<AdminRoute></AdminRoute>}>

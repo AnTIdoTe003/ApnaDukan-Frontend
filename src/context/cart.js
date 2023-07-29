@@ -17,7 +17,7 @@ const CartProvider = ({children})=>{
             }
         }
         getCart()
-    },[cart, auth.token])
+    },[auth.token])
     return(
         <CartContext.Provider value={[cart, setCart]} >
             {children}

@@ -1,4 +1,4 @@
-import { Box, Button, Container, Image, Text } from "@chakra-ui/react";
+import {Box, Button, Container, Image, Text, useToast} from "@chakra-ui/react";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -7,9 +7,9 @@ import { addItemToCart } from "../../store/slices/CartSlice";
 
 const ProductPage = () => {
   const { slug } = useParams();
-  const dispatch = useDispatch();
   const [response, setResponse] = useState({});
   const [category, setCategory] = useState({});
+  const toast = useToast()
   useEffect(() => {
     const fetchSingleProduct = async () => {
       try {
@@ -24,7 +24,38 @@ const ProductPage = () => {
     };
     fetchSingleProduct();
   }, [slug]);
-  console.log(response);
+
+  const addToCart = async()=>{
+    try{
+      const {data} = await axios({
+        method:'put',
+        url:'/api/v1/cart/add-to-cart', data:{
+          productId: response._id,
+          price:response.price,
+          quantity:1
+        }
+      })
+      console.log(data)
+      if(data.success){
+        toast({
+          title: 'Added to Cart',
+          description: "Please Go to the Cart Page",
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+      }
+    }catch (error){
+      toast({
+        title: 'Error Adding to Cart',
+        description: "Please try again after some time",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+  }
+
   return (
     <Box w={"full"}>
       <Container w={"full"} maxW={"1440px"} margin={"0 auto"}>
@@ -46,15 +77,8 @@ const ProductPage = () => {
             <Text fontWeight={"500"}>Rs {response.price}</Text>
             <Text fontWeight={"400"}>Category :- {category.name}</Text>
             <Button
-              onClick={() =>
-                dispatch(
-                  addItemToCart({
-                    id: response._id,
-                    quantity: 1,
-                    name: response.name,
-                    price: response.price,
-                  })
-                )
+              onClick={
+              addToCart
               }
             >
               Add to Cart
