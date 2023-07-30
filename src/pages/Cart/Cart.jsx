@@ -1,10 +1,9 @@
 import React from "react";
-import {Box, Button, Container, HStack, Text, VStack} from "@chakra-ui/react";
+import {Box, Button, Container, HStack,  Text, VStack} from "@chakra-ui/react";
 import { useAuth } from "../../context/auth";
 import { useCart } from "../../context/cart";
-import axios from "axios";
 import CartItem from "../../components/CartItem/CartItem";
-
+import {Link} from 'react-router-dom'
 const Cart = () => {
   const [cart] = useCart();
   const [auth] = useAuth();
@@ -50,7 +49,9 @@ const Cart = () => {
               </HStack>
             </Box>
             <Box>
+              <Link to={'/dashboard/checkout'}>
               <Button bg={'#EE1C47'} w={'300px'} h={'50px'} color={'white'} _hover={'none'}>Go to Checkout</Button>
+              </Link>
             </Box>
           </Box>
         </Box>

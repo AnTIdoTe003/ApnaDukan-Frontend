@@ -4,9 +4,7 @@ import login from "../../assets/login.jpg";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth";
 const Login = () => {
-  const [auth, setAuth] = useAuth()
 
   const [loginData, setLoginData] = useState({
     email: "",

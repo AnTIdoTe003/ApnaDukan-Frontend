@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Box, Container, filter } from "@chakra-ui/react";
+import { Box, Container} from "@chakra-ui/react";
 import HomeProductCard from "../HomeProductCard/HomeProductCard";
 const HomeAllProducts = ({ filterData }) => {
   const [response, setResponse] = useState([]);

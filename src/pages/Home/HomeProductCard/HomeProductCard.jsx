@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
@@ -6,14 +6,9 @@ import {
   Image,
   Link,
   Text,
-  useToast,
 } from "@chakra-ui/react";
 import { AiOutlineHeart } from "react-icons/ai";
-import { useCart } from "../../../context/cart";
-import { v4 as uuidv4 } from "uuid";
-import { useAuth } from "../../../context/auth";
 const HomeProductCard = ({
-  id,
   name,
   image,
   quantity,
@@ -21,17 +16,6 @@ const HomeProductCard = ({
   description,
   slug,
 }) => {
-  const [auth] = useAuth();
-  const [cartData, setCardData] = useState({
-    userId: "",
-    products: [],
-    orderId: "",
-    totalPrice: 0,
-    shippingAddress: "",
-    paymentMethod: "UPI",
-  });
-  const [cart, setCart] = useCart();
-  const toast = useToast();
   return (
     <Link href={`/product/${slug}`}>
       <Box
@@ -56,7 +40,7 @@ const HomeProductCard = ({
             <Text fontWeight={"700"}>{name}</Text>
             <Text fontWeight={"700"}>₹ {price}</Text>
           </HStack>
-          <Text>{description.substring(0, 30)}</Text>
+          <Text>{description.substring(0, 20)}...</Text>
           <Text>{quantity} left </Text>
           <HStack>
             <Button
