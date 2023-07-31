@@ -35,7 +35,7 @@ const HomeProductCard = ({
           w={"full"}
           h={"full"}
         >
-          <Image height={"150px"} src={image} objectFit={"contain"} />
+          <Image height={"150px"} src={image} objectFit={"contain"} mixBlendMode={'multiply'} />
           <HStack pt={"1rem"} justifyContent={"space-between"}>
             <Text fontWeight={"700"}>{name}</Text>
             <Text fontWeight={"700"}>₹ {price}</Text>
