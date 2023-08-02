@@ -5,14 +5,16 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import CreateCategory from './CreateCategory';
 import CreateProduct from './CreateProduct';
 import Users from './Users';
+import AllOrder from './AllOrder';
 const AdminMenu = () => {
   return (
     <Box>
-          <Tabs size="md" variant="enclosed">
+          <Tabs variant='soft-rounded' colorScheme='green' size="md">
             <TabList>
               <Tab>Create Category</Tab>
               <Tab>Create Product</Tab>
               <Tab>All Users</Tab>
+              <Tab>All Orders</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -23,6 +25,9 @@ const AdminMenu = () => {
               </TabPanel>
               <TabPanel>
                 <Users></Users>
+              </TabPanel>
+              <TabPanel>
+                <AllOrder/>
               </TabPanel>
             </TabPanels>
           </Tabs>

@@ -1,37 +1,41 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useAuth } from "../../context/auth";
 import {
   Box,
+  Button,
   Container,
   Image,
+  Menu,
+  MenuButton,
+  MenuGroup,
+  MenuItem,
+  MenuList,
   Table,
   TableContainer,
   Tbody,
   Td,
+  Text,
+  Tfoot,
   Th,
   Thead,
   Tr,
-  Text,
 } from "@chakra-ui/react";
-import greentick from "../../assets/greentick.gif";
-import Preview from "../../components/Preview/Preview";
-const Orders = () => {
-  const [auth] = useAuth();
-  const [orders, setOrders] = useState([]);
+import axios from "axios";
+import greentick from "../../assets/greentick.gif"
+import React, { useEffect, useState } from "react";
+import { BsFillArrowDownCircleFill } from "react-icons/bs";
+const AllOrder = () => {
+  const [response, setResponse] = useState([]);
   useEffect(() => {
-    const fetchUserOrders = async () => {
+    const fetchAllOrders = async () => {
       try {
-        const { data } = await axios.get(
-          `/api/v1/orders/get-all-orders?userId=${auth.user._id}`
-        );
-        setOrders(data.userOrder);
+        const { data } = await axios.get("api/v1/orders/fetchOrders");
+        setResponse(data.data);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchUserOrders();
+    fetchAllOrders();
   }, []);
+  console.log(response);
   return (
     <Box w={"full"}>
       <Container w={"full"} maxW={"1440px"} margin={"0 auto"}>
@@ -40,18 +44,19 @@ const Orders = () => {
             <Table variant="simple">
               <Thead>
                 <Tr>
+                  <Th>User Name</Th>
                   <Th>Order Id</Th>
                   <Th>Transaction Id</Th>
                   <Th>Payment Status</Th>
                   <Th>Order Date</Th>
                   <Th>Delivery Status</Th>
-                  <Th>Preview</Th>
                 </Tr>
               </Thead>
               <Tbody>
-                {orders.map((ele) => {
+                {response.map((ele) => {
                   return (
-                    <Tr key={ele._id}>
+                    <Tr>
+                      <Td>{ele.userId}</Td>
                       <Td>{ele.orderId}</Td>
                       <Td>{ele.razorpayPaymentId}</Td>
                       <Td>
@@ -70,11 +75,23 @@ const Orders = () => {
                       </Td>
                       <Td>{Date(ele.createdAt).split(" GMT")[0]}</Td>
                       <Td>
-                        <Text>{ele.isDelivered}</Text>
+                        <Menu>
+                          <MenuButton
+                            as={Button}
+                            rightIcon={<BsFillArrowDownCircleFill />}
+                            variant={'ghost'}
+                          >
+                            Delivery Status
+                          </MenuButton>
+                          <MenuList>
+                            <MenuItem>Processing</MenuItem>
+                            <MenuItem>Shipped</MenuItem>
+                            <MenuItem>Out for Delivery</MenuItem>
+                            <MenuItem>Delivered</MenuItem>
+                          </MenuList>
+                        </Menu>
                       </Td>
-                      <Td cursor={"pointer"}>
-                          <Preview id={ele.orderId}/>
-                      </Td>
+
                     </Tr>
                   );
                 })}
@@ -87,4 +104,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default AllOrder;
