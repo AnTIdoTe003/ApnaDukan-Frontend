@@ -7,7 +7,7 @@ const UserMenu = () => {
   return (
     <>
       <Box>
-        <Tabs size="md" variant="enclosed">
+        <Tabs size="md" variant='soft-rounded'>
           <TabList>
             <Tab>Profile</Tab>
             <Tab>Orders</Tab>

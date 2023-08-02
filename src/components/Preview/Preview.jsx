@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import Demo from "../../pages/User/Demo";
-const Preview = ({id}) => {
+const Preview = ({ id }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -25,7 +25,7 @@ const Preview = ({id}) => {
           <DrawerCloseButton />
           <DrawerHeader>Your Products</DrawerHeader>
           <DrawerBody>
-            <Demo id={id}/>
+            <Demo id={id} />
           </DrawerBody>
           <DrawerFooter>
             <Button variant="outline" mr={3} onClick={onClose}>
