@@ -22,7 +22,7 @@ import Checkout from "./pages/Checkout/Checkout";
 
 // axios defaults
 
-axios.defaults.baseURL = 'http://localhost:4000'
+axios.defaults.baseURL = 'https://apna-dukan-backend.vercel.app'
 axios.defaults.withCredentials = true
 
 const App = () => {

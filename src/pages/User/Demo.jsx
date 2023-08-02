@@ -23,7 +23,7 @@ const Demo = ({id, openModal, closeModal}) => {
 
               return(
                 <HStack>
-                  <Image w={'100px'} h={'100px'} src={`http://localhost:4000/api/v1/product/get-product-photo/${ele.productId}`}/>
+                  <Image w={'100px'} h={'100px'} src={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${ele.productId}`}/>
                   <VStack/>
                   <ProductById id={ele.productId}/>
                 </HStack>

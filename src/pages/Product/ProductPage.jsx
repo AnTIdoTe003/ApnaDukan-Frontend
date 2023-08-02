@@ -92,7 +92,7 @@ const ProductPage = () => {
                 height={"500px"}
                 objectFit={"contain"}
                 mixBlendMode={"multiply"}
-                src={`http://localhost:4000/api/v1/product/get-product-photo/${response._id}`}
+                src={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${response._id}`}
               />
             </Box>
             <Box display={"flex"} flexDirection={"column"} gap={"1rem"}>
@@ -137,7 +137,7 @@ const ProductPage = () => {
                       quantity={ele.quantity}
                       price={ele.price}
                       description={ele.description}
-                      image={`http://localhost:4000/api/v1/product/get-product-photo/${ele._id}`}
+                      image={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${ele._id}`}
                     />
                   );
                 })}

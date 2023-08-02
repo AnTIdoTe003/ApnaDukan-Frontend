@@ -71,7 +71,7 @@ const CartItem = ({id,qty}) => {
        <HStack justifyContent={'space-between'}>
            <HStack gap={'1rem'}>
            <Box w={'90px'} h={'120px'} borderRadius={'6px'} border={'0.5px solid #bbb'}>
-                <Image w={'full'} h={'full'} objectFit={'contain'} borderRadius={'6px'}   src={`http://localhost:4000/api/v1/product/get-product-photo/${id}`}/>
+                <Image w={'full'} h={'full'} objectFit={'contain'} borderRadius={'6px'}   src={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${id}`}/>
            </Box>
            <Box display={'flex'} flexDir={'column'} gap={'0.5rem'}>
                <Text fontWeight={'600'}>{response.name}</Text>

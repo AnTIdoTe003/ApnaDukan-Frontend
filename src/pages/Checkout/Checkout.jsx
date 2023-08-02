@@ -110,7 +110,7 @@ function Checkout(props) {
           };
 
           const result = await axios.post(
-            "http://localhost:4000/api/v1/orders/payment-verification",
+            "https://apna-dukan-backend.vercel.app/api/v1/orders/payment-verification",
             data
           );
           clearCart();

@@ -12,7 +12,7 @@ const SearchProducts = ({searchData}) => {
             return(
                 <Link target='_blank' to={`/product/${item.slug}`}>
                 <HStack borderBottom={'0.5px dashed #bbb'} key={item._id} justifyContent={'space-between'}>
-                    <Image w={'50px'} height={'50px'} src={`http://localhost:4000/api/v1/product/get-product-photo/${item._id}`}/>
+                    <Image w={'50px'} height={'50px'} src={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${item._id}`}/>
                     <Text fontWeight={'600'}>{item.name}</Text>
                 </HStack>
                 </Link>

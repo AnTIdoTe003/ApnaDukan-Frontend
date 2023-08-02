@@ -46,7 +46,7 @@ const HomeAllProducts = ({ filterData }) => {
                   quantity={ele.quantity}
                   price={ele.price}
                   description={ele.description}
-                  image={`http://localhost:4000/api/v1/product/get-product-photo/${ele._id}`}
+                  image={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${ele._id}`}
                 />
               );
             })}
