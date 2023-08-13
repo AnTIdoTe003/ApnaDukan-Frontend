@@ -9,14 +9,16 @@ import {
   Container,
 } from "@chakra-ui/react";
 import axios from "axios";
+import {useAuth} from '../../context/auth'
 const Profile = () => {
+  const [auth] = useAuth()
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    phone: "",
-    address: "",
+    name: auth.user.name,
+    email: auth.user.email,
+    password: auth.user.password,
+    confirmPassword: auth.user.confirmPassword,
+    phone:auth.user.phone,
+    address: auth.user.address,
   });
   const updateUser = async ()=>{
         try{

@@ -84,30 +84,27 @@ const ProductPage = () => {
   return (
     <Box w={"full"} mt={'1rem'}>
       <Container w={"full"} maxW={"1440px"} margin={"0 auto"}>
-        <Box w={"full"} display={"flex"} flexDirection={"column"} gap={"5rem"}>
-          <Box display={"flex"} alignItems={"center"} gap={"5rem"}>
-            <Box w={'700px'} h={'500px'} border={"1px dashed #bbb"} borderRadius={"10px"}>
+        <Box w={"full"} display={"flex"} flexDirection={"column"} gap={["1rem","5rem"]}>
+          <Box  display={"flex"} flexDirection={["column", "row"]} justifyContent={'center'} alignItems={"center"} gap={["1rem","5rem"]} >
+            <Box  w={["300px","700px"]} h={'500px'} border={"1px dashed #bbb"} borderRadius={"10px"}>
               <Image
-                w={"700px"}
+                w={["300px","700px"]}
                 height={"500px"}
                 objectFit={"contain"}
                 mixBlendMode={"multiply"}
                 src={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${response._id}`}
               />
             </Box>
-            <Box display={"flex"} flexDirection={"column"} gap={"1rem"}>
-              <Text fontSize={"72px"} fontWeight={"700"}>
+            <Box w={'100%'}  display={"flex"} flexDirection={"column"} gap={"1rem"}  >
+              <Text fontSize={["36px","72px"]} fontWeight={"700"}>
                 {response.name}
               </Text>
-              <Text w={'500px'} fontWeight={"500"}>{response.description}</Text>
+              <Text w={['100%','500px']} fontWeight={"500"}>{response.description}</Text>
               <Text fontWeight={"500"}>Rs {response.price}</Text>
               <Text fontWeight={"400"}>Category :- {category.name}</Text>
-              <HStack>
-                <Button _hover={'none'} bg={"#EE1C47"} color={"white"} onClick={addToCart}>
+              <HStack position={["fixed", "static"]} bottom={["0"]} right={'0'} w={'100%'} zIndex={'100'}>
+                <Button w={['100%', '150px']} borderBottomLeftRadius={["none","6px"]} borderBottomRightRadius={["none","6px"]} height={'60px'} alignSelf={'center'}  _hover={'none'} bg={"#EE1C47"} color={"white"} onClick={addToCart}>
                   <MdShoppingCart /> Add to Cart
-                </Button>
-                <Button bg={"#676c7b2b"} color={"#EE1C47"}>
-                  <MdShoppingCartCheckout /> Place Order
                 </Button>
               </HStack>
             </Box>
@@ -120,13 +117,14 @@ const ProductPage = () => {
               w={"100%"}
               display={"flex"}
               flexDirection={"column"}
+              flexWrap={'wrap'}
             >
               <Box pb={"2rem"}>
                 <Text fontSize={"2xl"} fontWeight={"600"}>
                   Similar Products
                 </Text>
               </Box>
-              <Box display={"flex"} flexWrap={"wrap"} gap={"2rem"}>
+              <Box display={"flex"} flexWrap={'wrap'} gap={'1rem'} >
                 {similarProduct.map((ele) => {
                   return (
                     <HomeProductCard

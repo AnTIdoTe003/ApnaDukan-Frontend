@@ -8,9 +8,13 @@
 
 main {
   width: 100%;
+  z-index: -1;
   .home-wrapper {
     margin-top: 5rem;
     width: 100%;
+    @media screen and (max-width:768px) {
+      display: none;
+    }
     .home-container {
       width: 100%;
       max-width: 1440px;
@@ -76,6 +80,9 @@ main {
             display: flex;
             flex-direction: column;
             gap: 2rem;
+            @media screen and (max-width:768px) {
+              display: none;
+            }
           }
         }
       }

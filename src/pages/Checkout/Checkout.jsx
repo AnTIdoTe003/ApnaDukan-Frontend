@@ -20,6 +20,7 @@ import {
   useDisclosure,
   Input,
   useToast,
+  Collapse,
 } from "@chakra-ui/react";
 import { TiTick } from "react-icons/ti";
 import { AiOutlinePlusSquare } from "react-icons/ai";
@@ -249,6 +250,7 @@ function Checkout(props) {
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>
+                <Collapse in = {stage !== 2 && true}>
                 <AccordionPanel pb={4}>
                   {cart.length !== 0 ? (
                     <>
@@ -285,6 +287,7 @@ function Checkout(props) {
                     </Box>
                   )}
                 </AccordionPanel>
+                </Collapse>
               </AccordionItem>
               {cart.length !== 0 && (
                 <AccordionItem>
@@ -300,9 +303,11 @@ function Checkout(props) {
                       <AccordionIcon />
                     </AccordionButton>
                   </h2>
+                  <Collapse>
                   <AccordionPanel pb={4}>
                     <Button>Pay Now</Button>
                   </AccordionPanel>
+                  </Collapse>
                 </AccordionItem>
               )}
             </Accordion>

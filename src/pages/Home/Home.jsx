@@ -15,25 +15,29 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { priceFilter } from "../../constants/priceFilter";
+import AsyncSpinner from "../../components/Spinner/Spinner";
 const Home = () => {
   const [categories, setCategories] = useState([]);
   const [filterData, setFilterData] = useState({
     category: [],
     price: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
   const fetchAllCategories = async () => {
     try {
+      setIsLoading(true);
       const { data } = await axios.get("/api/v1/category/categories");
       setCategories(data);
+      if (data) {
+        setIsLoading(false);
+      }
     } catch (error) {
       throw new Error(error.message);
     }
   };
-  
-  const getFilteredData = async()=>{
 
-  }
-  
+  const getFilteredData = async () => {};
+
   const [auth] = useAuth();
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
@@ -98,23 +102,29 @@ const Home = () => {
                   </RadioGroup>
                 </Box>
                 <Box>
-                  <Text fontWeight={"500"}>Filter by Category</Text>
-                  <CheckboxGroup>
-                    <Stack direction="column">
-                      {categories.map((ele) => {
-                        return (
-                          <Checkbox
-                            key={ele.id}
-                            value={ele._id}
-                            onChange={handleCheckboxChange}
-                            checked={filterData.category.includes(ele._id)}
-                          >
-                            {ele.name}
-                          </Checkbox>
-                        );
-                      })}
-                    </Stack>
-                  </CheckboxGroup>
+                  {isLoading ? (
+                    <AsyncSpinner />
+                  ) : (
+                    <>
+                      <Text fontWeight={"500"}>Filter by Category</Text>
+                      <CheckboxGroup>
+                        <Stack direction="column">
+                          {categories.map((ele) => {
+                            return (
+                              <Checkbox
+                                key={ele.id}
+                                value={ele._id}
+                                onChange={handleCheckboxChange}
+                                checked={filterData.category.includes(ele._id)}
+                              >
+                                {ele.name}
+                              </Checkbox>
+                            );
+                          })}
+                        </Stack>
+                      </CheckboxGroup>
+                    </>
+                  )}
                 </Box>
 
                 <Button

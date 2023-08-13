@@ -10,9 +10,9 @@ const Cart = () => {
   return auth.token ? (
     <Box w={"full"}>
       <Container w={"full"} maxWidth={"1440px"} margin={"0 auto"}>
-        <Box w={"full"} display={"flex"} gap={'2rem'}>
+        <Box w={"full"} display={"flex"} flexDirection={['column','row']} gap={'2rem'}>
           {/* Cart Items */}
-          <Box display={'flex'} p={'10px'} flexDirection={'column'} alignItems={'center'} w={'70%'} bg={'rgba(185,187,196,0.42)'} borderRadius={'6px'}>
+          <Box display={'flex'} p={'10px'} flexDirection={'column'} alignItems={'center'} w={['100%','70%']} bg={'rgba(185,187,196,0.42)'} borderRadius={'6px'}>
             <Box>
               <Text fontSize={'2xl'} fontWeight={'600'} >Your Cart Items are</Text>
             </Box>
@@ -27,7 +27,7 @@ const Cart = () => {
             </Box>
           </Box>
         {/*  Subtotal Price*/}
-          <Box w={'30%'} bg={'rgba(185,187,196,0.42)'} borderRadius={'6px'} display={'flex'} p={'10px'} flexDirection={'column'} alignItems={'center'} gap={'2rem'}>
+          <Box w={['100%','30%']} bg={'rgba(185,187,196,0.42)'} borderRadius={'6px'} display={'flex'} p={'10px'} flexDirection={'column'} alignItems={'center'} gap={'2rem'}>
             <Box>
               <Text fontSize={'2xl'} fontWeight={'600'}  pb={'20px'}>Your Total Price is</Text>
             </Box>
@@ -48,9 +48,9 @@ const Cart = () => {
                 <Text fontWeight={'600'} fontSize={'14px'}>Rs {auth.totalPrice}</Text>
               </HStack>
             </Box>
-            <Box>
+            <Box  position={["fixed", "static"]} bottom={["0"]} right={'0'} w={'100%'} zIndex={'100'}>
               <Link to={'/dashboard/checkout'}>
-              <Button bg={'#EE1C47'} w={'300px'} h={'50px'} color={'white'} _hover={'none'}>Go to Checkout</Button>
+              <Button bg={'#EE1C47'} w={['100%', '100%']} borderBottomLeftRadius={["none","6px"]} borderBottomRightRadius={["none","6px"]} height={'60px'} color={'white'} _hover={'none'}>Go to Checkout</Button>
               </Link>
             </Box>
           </Box>

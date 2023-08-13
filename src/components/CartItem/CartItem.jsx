@@ -68,8 +68,8 @@ const CartItem = ({id,qty}) => {
 
   return (
     <Box>
-       <HStack justifyContent={'space-between'}>
-           <HStack gap={'1rem'}>
+       <HStack justifyContent={['space-between']}>
+           <HStack gap={['0rem','1rem']}>
            <Box w={'90px'} h={'120px'} borderRadius={'6px'} border={'0.5px solid #bbb'}>
                 <Image w={'full'} h={'full'} objectFit={'contain'} borderRadius={'6px'}   src={`https://apna-dukan-backend.vercel.app/api/v1/product/get-product-photo/${id}`}/>
            </Box>
@@ -87,7 +87,7 @@ const CartItem = ({id,qty}) => {
            </HStack>
            <Box>
                <Menu>
-                   <MenuButton as={Button} rightIcon={<BiArrowToBottom/>}>
+                   <MenuButton fontSize={['10px','14px']} w={['90px','120px']}  as={Button} rightIcon={<BiArrowToBottom/>}>
                        Quantity
                    </MenuButton>
                    <MenuList >
